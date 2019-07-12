@@ -17,6 +17,8 @@ class Board
 
   def get_row_col_diagonals(cell)
     rcd = [get_row(cell), get_col(cell)]
+    rcd << get_diagonals(cell) unless cell.even?
+    rcd
   end
 
   private
@@ -38,11 +40,33 @@ class Board
     @board.each { |row| col << row[col_index(cell)] }
     col
   end
+
+  def diagonals_helpers
+    d_cells = [[1, 5, 9], [3, 5, 7]]
+
+    ds = [[@board[0][0], @board[1][1], @board[2][2]], [@board[0][2], @board[1][1], @board[2][0]]]
+
+    [d_cells, ds]
+  end
+
+  def get_diagonals(cell)
+    diagonals = []
+
+    d_cells = diagonals_helpers[0]
+
+    ds = diagonals_helpers[1]
+
+    diagonals << ds[0] if d_cells[0].include?(cell)
+    diagonals << ds[1] if d_cells[1].include?(cell)
+    diagonals
+  end
 end
 
 # test board.rb
 board = Board.new
 
-board.update(4, 'X')
+board.update(5, 'X')
 
-puts board.get_row_col_diagonals(4).to_s
+puts board.board.to_s
+
+puts board.get_row_col_diagonals(5).to_s
