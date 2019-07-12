@@ -12,5 +12,5 @@ Play it on Repl.it
 
 ## Authors
 
-* (Ar Nazeh) [<https://github.com/Nazeh>]
-* (tundeiness) [<https://github.com/tundeiness>]
+* [Ar Nazeh](https://github.com/Nazeh)
+* [Tunde Oretade](https://github.com/tundeiness)
