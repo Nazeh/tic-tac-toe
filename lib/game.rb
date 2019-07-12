@@ -1,9 +1,7 @@
 # frozen_string_literal: true
 
-# It takes output from board and compares the cells neighbours for similarities. It
-# also outputs whether the game was a draw or a win or continue. It also tracks
-# the count of turns and returns a draw if the game is over before anyone wins
-# or  it checks for the rows,columns and diagonals to check if anyone has won #
+# class Game checks for the rows,columns and diagonals to check if anyone has won or else
+# tracks the count of turns and returns a draw if the bosrd is full before anyone wins.
 class Game
   def initialize
     @count = 0
@@ -18,15 +16,17 @@ class Game
   end
 end
 
+# test
+
 arr = [[1, 2, 3]]
-test = Game.new
-puts test.status(arr, 'X')
-puts test.status(arr, 'X')
-puts test.status(arr, 'X')
-puts test.status(arr, 'X')
-puts test.status(arr, 'X')
-puts test.status(arr, 'X')
-puts test.status(arr, 'X')
-puts test.status(arr, 'X')
-puts test.status(arr, 'X')
-puts test.status(arr, 'X')
+game = Game.new
+puts game.status(arr, 'X')
+puts game.status(arr, 'X')
+puts game.status(arr, 'X')
+puts game.status(arr, 'X')
+puts game.status(arr, 'X')
+puts game.status(arr, 'X')
+puts game.status(arr, 'X')
+puts game.status(arr, 'X')
+puts game.status(arr, 'X')
+puts game.status(arr, 'X')
