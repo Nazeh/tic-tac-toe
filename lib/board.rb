@@ -61,12 +61,3 @@ class Board
     diagonals
   end
 end
-
-# test board.rb
-board = Board.new
-
-board.update(5, 'X')
-
-puts board.board.to_s
-
-puts board.get_row_col_diagonals(5).to_s
