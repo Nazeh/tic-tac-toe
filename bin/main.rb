@@ -7,6 +7,7 @@ require_relative '../lib/ui.rb'
 
 # Start the game
 loop do
+  # initiate and show the board
   game = Game.new
   board = Board.new
   UI.show(board)

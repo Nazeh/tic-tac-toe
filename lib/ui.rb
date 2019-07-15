@@ -5,7 +5,7 @@ module UI
   def self.display_instructions
     puts "\n"
 
-    puts '********* Welcome To My Tic-Tac-Toe Game! ********'
+    puts '******** Welcome To Our Tic-Tac-Toe Game! ********'
     puts '**************************************************'
     puts '=================================================='
     puts '**************************************************'
@@ -21,18 +21,26 @@ module UI
 
   def self.display_board(board)
     board.board.each_with_index do |row, i|
-      puts " #{row[0]} | #{row[1]} | #{row[2]}".center(50)
-      puts ' ---+---+---'.center(50) unless i == 2
+      puts "#{row[0]} | #{row[1]} | #{row[2]}".center(50)
+      puts '---+---+---'.center(50) unless i == 2
     end
   end
 
-  def self.show(board)
+  def self.show(board, message)
     puts `clear`
     display_instructions
     display_board(board)
+    display_score
+    puts message
   end
 
-  def self.game_over
+  def self.display_score
+    puts "\n"
+    puts ' Score '.center(50, '=')
+    puts ' Player 1 : 1  Player 2 : 0 '.center(50, '=')
+  end
+
+  def game_over
     puts "\n"
     puts '*************************************************'
     puts '****************    GAME OVER    ****************'
@@ -43,6 +51,13 @@ module UI
     game_over
     puts '*************************************************'
     puts "****************  It's a Draw!  *****************"
+    puts '*************************************************'
+  end
+
+  def self.wins(player = 1)
+    game_over
+    puts '*************************************************'
+    puts "***************  PLayer #{player} Wins  *****************"
     puts '*************************************************'
   end
 

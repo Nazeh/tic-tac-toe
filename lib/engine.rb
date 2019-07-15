@@ -10,7 +10,7 @@ module Engine
 
     while game_status == 'continue'
       # place holder until updating UI
-      show_board(board)
+      UI.show(board)
 
       # update cell
       cell = prompt_cell
@@ -50,7 +50,7 @@ module Engine
   def self.prompt_cell
     cell = nil
     while cell.nil?
-      puts "\nPlayer #{@marked_cells.length % 2 + 1}, Where would you like to put your mark?"
+      messege "\nPlayer #{@marked_cells.length % 2 + 1}, Where would you like to put your mark?"
       answer = gets.chomp.to_i
       cell = answer unless @marked_cells.include?(answer) || [1, 2, 3, 4, 5, 6, 7, 8, 9].include?(answer) == false
     end
