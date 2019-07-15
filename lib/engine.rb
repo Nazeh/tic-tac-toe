@@ -19,16 +19,18 @@ module Engine
     return @list
   end
 
-  def self.play(game, board, p1_sign)
+  def self.play(game, board, player_signs)
     game_status = 'continue'
-    sign = p1_sign
+    sign = player_signs[0]
     while game_status == 'continue'
       cell = self.get_cell
       row_col_diagonals = board.get_row_col_diagonals(cell)
       board.update(cell, sign)
       # place holder until updating UI
       puts board.board.to_s
+
       game_status = game.status(row_col_diagonals, sign)
+      sign = (player_signs - [sign]).first
     end
   end
 
