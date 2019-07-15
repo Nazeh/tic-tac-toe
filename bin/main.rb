@@ -12,12 +12,13 @@ puts board.board[0].to_s
 puts board.board[1].to_s
 puts board.board[2].to_s
 
-# Initiate the game with user input
-player_signs = Engine.start
-
 # Start the game
-game = Game.new
-Engine.play(game, board, player_signs)
-
+loop do
+  game = Game.new
+  board = Board.new
+  Engine.play(game, board)
+  puts 'do you want to play again? Y or N'
+  break unless gets.chomp.downcase.to_s == 'y'
+end
 # thanks after exsiting (Place holder until UI)
 puts 'Thank you for playing out implementation of Tic Tac Toe'
