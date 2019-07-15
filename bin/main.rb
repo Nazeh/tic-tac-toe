@@ -12,11 +12,11 @@ puts board.board.to_s
 
 # Initiate the game with user input
 player_signs = Engine.start
-p1_sign = hash[0]
+p1_sign = player_signs[0]
 
 # Start the game
 game = Game.new
-Engine.play(game, board)
+Engine.play(game, board, p1_sign)
 
 # thanks after exsiting (Place holder until UI)
 puts 'Thank you for playing out implementation of Tic Tac Toe'
