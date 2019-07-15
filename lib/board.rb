@@ -17,7 +17,8 @@ class Board
 
   def get_row_col_diagonals(cell)
     row_col_diagonals = [get_row(cell), get_col(cell)]
-    row_col_diagonals << get_diagonals(cell) unless cell.even?
+    row_col_diagonals << get_diagonals(cell).first unless cell.even?
+    row_col_diagonals << get_diagonals(cell).last if cell == 5
     row_col_diagonals
   end
 

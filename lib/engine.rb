@@ -25,16 +25,25 @@ module Engine
     @marked_cells = []
 
     while game_status == 'continue'
+      # update cell
       cell = prompt_cell
       @marked_cells << cell
-      row_col_diagonals = board.get_row_col_diagonals(cell)
+      
+      # update board
       board.update(cell, sign)
-      # place holder until updating UI
-      puts board.board.to_s
 
+      # place holder until updating UI
+      puts board.board[0].to_s
+      puts board.board[1].to_s
+      puts board.board[2].to_s
+      
+      # update game status and switch player
+      row_col_diagonals = board.get_row_col_diagonals(cell)
       game_status = game.status(row_col_diagonals, sign)
       sign = (player_signs - [sign]).first
     end
+
+    puts game_status
   end
 
   def self.prompt_cell

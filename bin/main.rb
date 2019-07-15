@@ -8,11 +8,12 @@ require_relative '../lib/game.rb'
 board = Board.new
 
 # Initiate sudo user interface (Place holder until UI)
-puts board.board.to_s
+puts board.board[0].to_s
+puts board.board[1].to_s
+puts board.board[2].to_s
 
 # Initiate the game with user input
 player_signs = Engine.start
-
 
 # Start the game
 game = Game.new
