@@ -10,7 +10,7 @@ class Game
   def status(row_col_diagonals, sign)
     @count += 1
     return "#{sign} won" if row_col_diagonals.any? { |element| element.count(sign) == 3 }
-    return 'draw' if @count >= 9
+    return UI.draw if @count >= 9
 
     'continue'
   end

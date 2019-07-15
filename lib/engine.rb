@@ -23,7 +23,7 @@ module Engine
       sign = (@players_signs - [sign]).first
     end
 
-    puts "\n", game_status
+    puts game_status
   end
 
   def self.show_board(board)
