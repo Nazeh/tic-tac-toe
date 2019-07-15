@@ -15,18 +15,3 @@ class Game
     'continue'
   end
 end
-
-# test
-
-arr = [[1, 2, 3]]
-game = Game.new
-puts game.status(arr, 'X')
-puts game.status(arr, 'X')
-puts game.status(arr, 'X')
-puts game.status(arr, 'X')
-puts game.status(arr, 'X')
-puts game.status(arr, 'X')
-puts game.status(arr, 'X')
-puts game.status(arr, 'X')
-puts game.status(arr, 'X')
-puts game.status(arr, 'X')
