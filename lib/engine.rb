@@ -16,15 +16,16 @@ module Engine
     @list[0] = user_input
     @list[1] = @list[0] == 'X' ? 'O' : 'X'
 
-    return @list
+    @list
   end
 
   def self.play(game, board, player_signs)
     game_status = 'continue'
     sign = player_signs[0]
     @marked_cells = []
+
     while game_status == 'continue'
-      cell = self.get_cell
+      cell = prompt_cell
       @marked_cells << cell
       row_col_diagonals = board.get_row_col_diagonals(cell)
       board.update(cell, sign)
@@ -36,7 +37,7 @@ module Engine
     end
   end
 
-  def self.get_cell
+  def self.prompt_cell
     cell = nil
     while cell.nil?
       puts 'Please choose a cell'
