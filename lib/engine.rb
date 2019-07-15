@@ -16,12 +16,11 @@ module Engine
     @list[0] = user_input
     @list[1] = @list[0] == 'X' ? 'O' : 'X'
 
-    return @list
+    @list
   end
 
-  def self.play(status)
-    until status == 'continue'
-      puts 'playing'
-    end
+  def self.play(_game, _board)
+    game_status = 'continue'
+    puts 'playing' until game_status == 'continue'
   end
 end
