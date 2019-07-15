@@ -22,8 +22,10 @@ module Engine
   def self.play(game, board, player_signs)
     game_status = 'continue'
     sign = player_signs[0]
+    @marked_cells = []
     while game_status == 'continue'
       cell = self.get_cell
+      @marked_cells << cell
       row_col_diagonals = board.get_row_col_diagonals(cell)
       board.update(cell, sign)
       # place holder until updating UI
@@ -38,7 +40,8 @@ module Engine
     cell = nil
     while cell.nil?
       puts 'Please choose a cell'
-      cell = gets.chomp.to_i
+      answer = gets.chomp.to_i
+      cell = answer unless @marked_cells.include?(answer)
     end
     cell
   end
