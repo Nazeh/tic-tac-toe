@@ -28,7 +28,6 @@ module Engine
       board.update(cell, sign)
       # place holder until updating UI
       puts board.board.to_s
-
       game_status = game.status(row_col_diagonals, sign)
     end
   end
