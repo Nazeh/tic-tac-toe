@@ -7,15 +7,16 @@ require_relative '../lib/ui.rb'
 
 # Start the game
 loop do
-  # initiate and show the board
   game = Game.new
   board = Board.new
-  UI.show(board)
+  ui = UI.new(board)
 
-  Engine.play(game, board)
+  ui.show
+
+  Engine.play(game, board, ui)
   puts "\nWould you like to play again? 'Y' or 'N'"
   break unless gets.chomp.downcase.to_s == 'y'
 end
 
-# thanks after exsiting (Place holder until UI)
-UI.thanks
+# thanks after exsiting 
+ui.thanks

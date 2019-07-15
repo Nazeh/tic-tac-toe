@@ -1,8 +1,35 @@
 # frozen_string_literal: true
 
 # UI module contains methods for showing the board, prompt messages and game status!
-module UI
-  def self.display_instructions
+class UI
+  def initialize(board)
+    @board = board.board
+  end
+
+  def show
+    puts `clear`
+    display_instructions
+    display_board
+    display_score
+  end
+
+  def draw
+    game_over
+    puts '*************************************************'
+    puts "****************  It's a Draw!  *****************"
+    puts '*************************************************'
+  end
+
+  def wins(player = 1)
+    game_over
+    puts '*************************************************'
+    puts "***************  PLayer #{player} Wins  *****************"
+    puts '*************************************************'
+  end
+
+  private
+
+  def display_instructions
     puts "\n"
 
     puts '******** Welcome To Our Tic-Tac-Toe Game! ********'
@@ -19,22 +46,14 @@ module UI
     puts "Good luck! \n "
   end
 
-  def self.display_board(board)
-    board.board.each_with_index do |row, i|
+  def display_board
+    @board.reverse.each_with_index do |row, i|
       puts "#{row[0]} | #{row[1]} | #{row[2]}".center(50)
       puts '---+---+---'.center(50) unless i == 2
     end
   end
 
-  def self.show(board, message)
-    puts `clear`
-    display_instructions
-    display_board(board)
-    display_score
-    puts message
-  end
-
-  def self.display_score
+  def display_score
     puts "\n"
     puts ' Score '.center(50, '=')
     puts ' Player 1 : 1  Player 2 : 0 '.center(50, '=')
@@ -47,21 +66,8 @@ module UI
     puts '*************************************************'
   end
 
-  def self.draw
-    game_over
-    puts '*************************************************'
-    puts "****************  It's a Draw!  *****************"
-    puts '*************************************************'
-  end
 
-  def self.wins(player = 1)
-    game_over
-    puts '*************************************************'
-    puts "***************  PLayer #{player} Wins  *****************"
-    puts '*************************************************'
-  end
-
-  def self.thanks
+  def thanks
     puts "\n*************************************************"
     puts 'Thanks for playing out Tic Tac Toe Implementation'
     puts "*************************************************\n"
