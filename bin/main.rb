@@ -3,15 +3,14 @@
 require_relative '../lib/board.rb'
 require_relative '../lib/engine.rb'
 require_relative '../lib/game.rb'
+require_relative '../lib/ui.rb'
 
 # Start the game
 loop do
   game = Game.new
   board = Board.new
   # Initiate sudo user interface (Place holder until UI)
-  puts board.board[0].to_s
-  puts board.board[1].to_s
-  puts board.board[2].to_s
+  UI.show(board)
 
   Engine.play(game, board)
   puts "\nWould you like to play again? 'Y' or 'N'"
