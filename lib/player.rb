@@ -7,11 +7,14 @@ class Player
   attr_reader :color
   attr_reader :score
 
-  def initialize(name, mark = 'X', color = 'red', score = 0)
+  def initialize(name, score = 0)
     @name  = name
-    @mark  = mark
-    @color = color
     @score = score
+  end
+
+  def add_mark(mark)
+    @mark = mark
+    @color = @mark == 'X' ? 'red' : 'green'
   end
 
   def add_score

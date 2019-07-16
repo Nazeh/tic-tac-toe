@@ -11,22 +11,6 @@ module Ui
     display_score
   end
 
-  def draw
-    game_over
-    puts '*************************************************'
-    puts "****************  It's a Draw!  *****************"
-    puts '*************************************************'
-  end
-
-  def wins(player = 1)
-    game_over
-    puts '*************************************************'
-    puts "***************  PLayer #{player} Wins  *****************"
-    puts '*************************************************'
-  end
-
-  def play_again?; end
-
   def thanks
     puts "\n*************************************************"
     puts 'Thanks for playing out Tic Tac Toe Implementation'
@@ -52,10 +36,25 @@ module Ui
   end
 
   def game_over
-    puts "\n"
-    puts '*************************************************'
-    puts '****************    GAME OVER    ****************'
-    puts '*************************************************'
+    "\n*************************************************\n
+****************    GAME OVER    ****************\n
+*************************************************"
+  end
+
+  def display_wins(player)
+    "\n*************************************************\n
+***************  #{player} Wins  *****************\n
+*************************************************"
+  end
+
+  def display_draw
+    "\n*************************************************\n
+****************  It's a Draw!  *****************\n
+*************************************************"
+  end
+
+  def prompt_play_again
+    "\nWould you like to play another match? (Y/N)"
   end
 
   def display_board
@@ -68,7 +67,7 @@ module Ui
   def display_score
     puts "\n"
     puts ' Score '.center(50, '=')
-    puts ' Player 1 : 1  Player 2 : 0 '.center(50, '=')
+    puts " #{@player1.name} : #{@player1.score}  #{@player2.name} : #{@player2.score} ".center(50, '=')
   end
 
   def prompt(message)

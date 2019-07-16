@@ -1,40 +1,78 @@
 # frozen_string_literal: true
 
 require_relative '../lib/board.rb'
-require_relative '../lib/player.rb'
+require_relative '../lib/engine.rb'
 require_relative '../lib/ui.rb'
 
-# class Game checks for the rows,columns and diagonals to check if anyone has won or else
-# tracks the count of turns and returns a draw if the bosrd is full before anyone wins.
+# class Game Initiate a new board (using Board class) and status,
+# plays one match, and update the UI (using Ui module) and change
+# the player score in the mean time.
 class Game
   include Ui
+  include Engine
 
   def initialize(player1, player2)
-    @count = 0
-    @board = Board.new
-    @status = 'continue'
     @player1 = player1
     @player2 = player2
-    assign_players_signs
+    new_match
   end
 
   private
 
-  def status(row_col_diagonals, sign)
-    @count += 1
-    @status = 'win' if row_col_diagonals.any? { |element| element.count(sign) == 3 }
-    @status = 'draw' if @count >= 9
-  end
-
   def assign_players_signs
-    @players_signs = []
-    while @players_signs.empty?
-      ui.show
-      puts "\nPlayer 1, Please choose a mark: 'X' or 'O' ?"
-      user_input = gets.chomp.to_s.upcase
+    while @player1.mark.nil?
+      user_input = prompt("\nPlayer 1, Please choose a mark? (X/Y) ").upcase
       break if %w[X O].include?(user_input)
     end
-    @players_signs[0] = user_input
-    @players_signs[1] = @players_signs[0] == 'X' ? 'O' : 'X'
+    @player1.add_mark(user_input)
+    @player2.add_mark(@player1.mark == 'X' ? 'O' : 'X')
+  end
+
+  def new_match
+    @player1.add_mark(nil)
+    @status = 'continue'
+    @rounds = 0
+    @board = Board.new
+    @marked_cells = []
+    @turn = @player1
+    assign_players_signs
+    play
+  end
+
+  def play
+    while @status == 'continue'
+      prompt_cell
+      update
+    end
+    play_again?
+  end
+
+  def prompt_cell
+    cell = nil
+    while cell.nil?
+      answer = prompt("\nPlayer #{@marked_cells.length % 2 + 1} turn\nWhere would you like to put your mark?").to_i
+      cell = answer unless @marked_cells.include?(answer) || [1, 2, 3, 4, 5, 6, 7, 8, 9].include?(answer) == false
+    end
+    @marked_cells << cell
+  end
+
+  def update
+    @board.update(@marked_cells.last, @turn.mark)
+    @status = update_status(@board.get_row_col_diagonals(@marked_cells.last), @turn.mark)
+    @turn = ([@player1, @player2] - [@turn]).first
+  end
+
+  def update_status(row_col_diagonals, mark)
+    @rounds += 1
+    @status = 'win' if row_col_diagonals.any? { |element| element.count(mark) == 3 }
+    @status = 'draw' if @rounds >= 9
+    @status
+  end
+
+  def play_again?
+    winlose = @status == 'win' ? display_wins(@turn.name) : display_draw
+    answer = prompt(game_over + winlose + prompt_play_again)
+    new_match if answer == 'y'
+    play if answer == 'y'
   end
 end
