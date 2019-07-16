@@ -19,23 +19,23 @@ ruby bin/main.rb
 ```
 ## live version
 
-Play it on [Repl.it](https://repl.it/@Nazeh1/Tic-Tac-Toe)* <br/>
+Play it on [Repl.it](https://repl.it/@Nazeh1/Tic-Tac-Toe) <br/>
 *(doesn't support console clearing)
 
 ## How to Play
 
 Board is divided into a grid of 9 cells numbered in a similar
-manner to Numpads for convinience!
+manner to Numpads for convenience!
 
 - Player 1 chooses a mark: X or Y, Player 2 gets the other mark.
-- Playess choose the number of the cell to mark in their turns.
-- The first player to mark a row, column or a diagonal Wins.
+- Players choose the number of the cell to mark in their turns.
+- The first player to mark a row, column or diagonal wins.
 - If the grid is full with no winning conditions the game ends with a draw!
 - You can play another match in which case the game will count your score.
-- Otherwise the game will end and the code will terminate. 
+- Otherwise, the game will end and the code will terminate. 
 
 Only X/O would be accepted as a mark.<br/>
-Only unmarked numbers on the board would be accepted as cell number.<br/>
+Only unmarked numbers on the board would be accepted as cell numbers.<br/>
 Ond only Y/N would be accepted for other options.<br/>
 Inputs can be lower or upper case.
 
