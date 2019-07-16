@@ -11,8 +11,8 @@ class Board
               [7, 8, 9]]
   end
 
-  def update(cell, sign)
-    @board[row_index(cell)][col_index(cell)] = sign
+  def update(cell, mark)
+    @board[row_index(cell)][col_index(cell)] = mark
   end
 
   def get_row_col_diagonals(cell)

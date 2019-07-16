@@ -63,8 +63,8 @@ class Game
 
   def update_status(row_col_diagonals, mark)
     @rounds += 1
-    @status = 'win' if row_col_diagonals.any? { |element| element.count(mark) == 3 }
     @status = 'draw' if @rounds >= 9
+    @status = 'win' if row_col_diagonals.any? { |element| element.count(mark) == 3 }
     @status
   end
 
@@ -73,8 +73,11 @@ class Game
   end
 
   def play_again?
-    winlose = @status == 'win' ? display_wins(@turn.name) : display_draw
-    answer = prompt(game_over + winlose + prompt_play_again)
+    answer = nil
+    until %w[y n].include?(answer)
+      winlose = @status == 'win' ? display_wins(@turn.name) : display_draw
+      answer = prompt(game_over + winlose + prompt_play_again)
+    end
     new_match if answer == 'y'
     play if answer == 'y'
   end

@@ -13,7 +13,8 @@ module Ui
 
   def thanks
     puts "\n*************************************************"
-    puts 'Thanks for playing out Tic Tac Toe Implementation'
+    puts 'Thanks for playing our Tic Tac Toe Implementation'
+    puts "\n****** Authors' Github: Nazeh / tundeiness ******"
     puts "*************************************************\n"
   end
 
@@ -43,25 +44,38 @@ module Ui
 
   def display_wins(player)
     "\n*************************************************\n"\
-      "***************  #{player} Wins  *****************\n"\
+      "****************  #{player} Wins  ****************\n"\
       '*************************************************'
   end
 
   def display_draw
     "\n*************************************************\n"\
-      "****************  It's a Draw!  *****************\n"\
+      "****************   It's a Draw!  ****************\n"\
       '*************************************************'
   end
 
   def prompt_play_again
-    "\nWould you like to play another match? (Y/N)"
+    "\n\nWould you like to play another match? (Y/N)"
   end
 
   def display_board
     @board.board.reverse.each_with_index do |row, i|
-      puts "#{row[0]} | #{row[1]} | #{row[2]}".center(50)
+      line(row)
       puts '---+---+---'.center(50) unless i == 2
     end
+  end
+
+  def line(row)
+    # 73 and row.count to keep the row centered after adding the colorize() characters
+    row = "#{colorize(row[0])}\e[0m | #{colorize(row[1])}\e[0m | #{colorize(row[2])}\e[0m"
+    puts row.center(73 + row.count('X') + row.count('O'))
+  end
+
+  def colorize(text)
+    "\e[#{if %w[X O].include?(text)
+            @player1.mark == text ? @player1.color : @player2.color
+          else 1
+          end}m#{text}"
   end
 
   def display_score

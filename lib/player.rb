@@ -14,7 +14,7 @@ class Player
 
   def add_mark(mark)
     @mark = mark
-    @color = @mark == 'X' ? 'red' : 'green'
+    @color = @mark == 'X' ? '31' : '32'
   end
 
   def add_score
