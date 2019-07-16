@@ -16,9 +16,10 @@ class Board
   end
 
   def get_row_col_diagonals(cell)
-    rcd = [get_row(cell), get_col(cell)]
-    rcd << get_diagonals(cell) unless cell.even?
-    rcd
+    row_col_diagonals = [get_row(cell), get_col(cell)]
+    row_col_diagonals << get_diagonals(cell).first unless cell.even?
+    row_col_diagonals << get_diagonals(cell).last if cell == 5
+    row_col_diagonals
   end
 
   private
@@ -42,31 +43,22 @@ class Board
   end
 
   def diagonals_helpers
-    d_cells = [[1, 5, 9], [3, 5, 7]]
+    diagonal_cells = [[1, 5, 9], [3, 5, 7]]
 
-    ds = [[@board[0][0], @board[1][1], @board[2][2]], [@board[0][2], @board[1][1], @board[2][0]]]
+    diagonal_values = [[@board[0][0], @board[1][1], @board[2][2]], [@board[0][2], @board[1][1], @board[2][0]]]
 
-    [d_cells, ds]
+    [diagonal_cells, diagonal_values]
   end
 
   def get_diagonals(cell)
     diagonals = []
 
-    d_cells = diagonals_helpers[0]
+    diagonal_cells = diagonals_helpers[0]
 
-    ds = diagonals_helpers[1]
+    diagonal_values = diagonals_helpers[1]
 
-    diagonals << ds[0] if d_cells[0].include?(cell)
-    diagonals << ds[1] if d_cells[1].include?(cell)
+    diagonals << diagonal_values[0] if diagonal_cells[0].include?(cell)
+    diagonals << diagonal_values[1] if diagonal_cells[1].include?(cell)
     diagonals
   end
 end
-
-# test board.rb
-board = Board.new
-
-board.update(5, 'X')
-
-puts board.board.to_s
-
-puts board.get_row_col_diagonals(5).to_s
