@@ -10,3 +10,6 @@ player2 = Player.new('player 2')
 
 # initiate game
 Game.new(player1, player2)
+
+# thanks for playing
+Ui.thanks

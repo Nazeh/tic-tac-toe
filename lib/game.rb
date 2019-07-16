@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require_relative '../lib/board.rb'
-require_relative '../lib/engine.rb'
 require_relative '../lib/ui.rb'
 
 # class Game Initiate a new board (using Board class) and status,
@@ -9,7 +8,6 @@ require_relative '../lib/ui.rb'
 # the player score in the mean time.
 class Game
   include Ui
-  include Engine
 
   def initialize(player1, player2)
     @player1 = player1
@@ -18,6 +16,17 @@ class Game
   end
 
   private
+
+  def new_match
+    @player1.add_mark(nil)
+    @status = 'continue'
+    @rounds = 0
+    @board = Board.new
+    @marked_cells = []
+    @turn = @player2
+    assign_players_signs
+    play
+  end
 
   def assign_players_signs
     while @player1.mark.nil?
@@ -28,22 +37,13 @@ class Game
     @player2.add_mark(@player1.mark == 'X' ? 'O' : 'X')
   end
 
-  def new_match
-    @player1.add_mark(nil)
-    @status = 'continue'
-    @rounds = 0
-    @board = Board.new
-    @marked_cells = []
-    @turn = @player1
-    assign_players_signs
-    play
-  end
-
   def play
     while @status == 'continue'
+      @turn = ([@player1, @player2] - [@turn]).first
       prompt_cell
       update
     end
+    update_score
     play_again?
   end
 
@@ -59,7 +59,6 @@ class Game
   def update
     @board.update(@marked_cells.last, @turn.mark)
     @status = update_status(@board.get_row_col_diagonals(@marked_cells.last), @turn.mark)
-    @turn = ([@player1, @player2] - [@turn]).first
   end
 
   def update_status(row_col_diagonals, mark)
@@ -67,6 +66,10 @@ class Game
     @status = 'win' if row_col_diagonals.any? { |element| element.count(mark) == 3 }
     @status = 'draw' if @rounds >= 9
     @status
+  end
+
+  def update_score
+    @turn.add_score if @status == 'win'
   end
 
   def play_again?
