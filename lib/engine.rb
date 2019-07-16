@@ -10,7 +10,6 @@ module Engine
 
     while game_status == 'continue'
       # place holder until updating UI
-      
 
       # update cell
       cell = prompt_cell(ui)
