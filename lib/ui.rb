@@ -1,12 +1,10 @@
 # frozen_string_literal: true
 
 # UI module contains methods for showing the board, prompt messages and game status!
-class UI
-  def initialize(board)
-    @board = board.board
-  end
+module Ui
+  module_function
 
-  def show
+  def display
     puts `clear`
     display_instructions
     display_board
@@ -27,11 +25,18 @@ class UI
     puts '*************************************************'
   end
 
+  def play_again?; end
+
+  def thanks
+    puts "\n*************************************************"
+    puts 'Thanks for playing out Tic Tac Toe Implementation'
+    puts "*************************************************\n"
+  end
+
   private
 
   def display_instructions
     puts "\n"
-
     puts '******** Welcome To Our Tic-Tac-Toe Game! ********'
     puts '**************************************************'
     puts '=================================================='
@@ -46,8 +51,15 @@ class UI
     puts "Good luck! \n "
   end
 
+  def game_over
+    puts "\n"
+    puts '*************************************************'
+    puts '****************    GAME OVER    ****************'
+    puts '*************************************************'
+  end
+
   def display_board
-    @board.reverse.each_with_index do |row, i|
+    @board.board.reverse.each_with_index do |row, i|
       puts "#{row[0]} | #{row[1]} | #{row[2]}".center(50)
       puts '---+---+---'.center(50) unless i == 2
     end
@@ -59,17 +71,9 @@ class UI
     puts ' Player 1 : 1  Player 2 : 0 '.center(50, '=')
   end
 
-  def game_over
-    puts "\n"
-    puts '*************************************************'
-    puts '****************    GAME OVER    ****************'
-    puts '*************************************************'
-  end
-
-
-  def thanks
-    puts "\n*************************************************"
-    puts 'Thanks for playing out Tic Tac Toe Implementation'
-    puts "*************************************************\n"
+  def prompt(message)
+    display
+    puts message
+    gets.chomp.downcase.to_s
   end
 end

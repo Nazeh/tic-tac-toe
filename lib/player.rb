@@ -7,7 +7,7 @@ class Player
   attr_reader :color
   attr_reader :score
 
-  def initialize(name = 'player 1', mark = 'X', color = 'red', score = 0)
+  def initialize(name, mark = 'X', color = 'red', score = 0)
     @name  = name
     @mark  = mark
     @color = color
