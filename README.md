@@ -17,7 +17,7 @@ Ruby 2.5.0+
 ```console
 ruby bin/main.rb
 ```
-## live version
+## Live version
 
 Play it on [Repl.it](https://repl.it/@Nazeh1/Tic-Tac-Toe) <br/>
 *(doesn't support console clearing)
