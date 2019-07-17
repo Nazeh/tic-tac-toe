@@ -39,7 +39,7 @@ class Game
 
   def play
     while @status == 'continue'
-      @turn = ([@player1, @player2] - [@turn]).first
+      update_turn
       prompt_cell
       update
     end
@@ -47,11 +47,15 @@ class Game
     play_again?
   end
 
+  def update_turn
+    @turn = ([@player1, @player2] - [@turn]).first
+  end
+
   def prompt_cell
     cell = nil
     while cell.nil?
-      answer = prompt("\nPlayer #{@marked_cells.length % 2 + 1} turn\nWhere would you like to put your mark?").to_i
-      cell = answer unless @marked_cells.include?(answer) || [1, 2, 3, 4, 5, 6, 7, 8, 9].include?(answer) == false
+      answer = prompt("\n#{@turn.name} turn\nWhere would you like to put your mark?").to_i
+      cell = answer unless @marked_cells.include?(answer) || (1..9).to_a.include?(answer) == false
     end
     @marked_cells << cell
   end
@@ -79,6 +83,5 @@ class Game
       answer = prompt(game_over + winlose + prompt_play_again)
     end
     new_match if answer == 'y'
-    play if answer == 'y'
   end
 end

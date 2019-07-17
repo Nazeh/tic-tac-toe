@@ -43,22 +43,15 @@ class Board
   end
 
   def diagonals_helpers
-    diagonal_cells = [[1, 5, 9], [3, 5, 7]]
-
-    diagonal_values = [[@board[0][0], @board[1][1], @board[2][2]], [@board[0][2], @board[1][1], @board[2][0]]]
-
-    [diagonal_cells, diagonal_values]
+    @diagonal_cells = [[1, 5, 9], [3, 5, 7]]
+    @diagonal_values = [[@board[0][0], @board[1][1], @board[2][2]], [@board[0][2], @board[1][1], @board[2][0]]]
   end
 
   def get_diagonals(cell)
     diagonals = []
-
-    diagonal_cells = diagonals_helpers[0]
-
-    diagonal_values = diagonals_helpers[1]
-
-    diagonals << diagonal_values[0] if diagonal_cells[0].include?(cell)
-    diagonals << diagonal_values[1] if diagonal_cells[1].include?(cell)
+    diagonals_helpers
+    diagonals << @diagonal_values[0] if @diagonal_cells[0].include?(cell)
+    diagonals << @diagonal_values[1] if @diagonal_cells[1].include?(cell)
     diagonals
   end
 end
