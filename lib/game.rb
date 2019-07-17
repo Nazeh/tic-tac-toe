@@ -30,7 +30,7 @@ class Game
 
   def assign_players_signs
     while @player1.mark.nil?
-      user_input = prompt("\nPlayer 1, Please choose a mark? (X/Y) ").upcase
+      user_input = prompt("\nPlayer 1, Please choose a mark? (X/O)").upcase
       break if %w[X O].include?(user_input)
     end
     @player1.add_mark(user_input)
