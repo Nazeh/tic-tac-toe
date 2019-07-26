@@ -6,16 +6,25 @@ Tic Tac Toe (X O) terminal game implementation using Ruby.
 
 #### Prerequisites
 
-Ruby 2.5.0+
+##### [Ruby 2.5.0+](https://www.ruby-lang.org/en/downloads/)
 
-RSpec 3.0+
+##### RSpec 3.0+
+```console
+gem install rspec
+```
+
+##### Install
+```console
+git clone https://github.com/Nazeh/tic-tac-toe
+cd tic-tac-toe
+```
 
 #### Run
-Run game:
+##### Run game:
 ```console
 ruby bin/main.rb
 ```
-Run tests:
+##### Run tests:
 ```console
 rspec
 ```
