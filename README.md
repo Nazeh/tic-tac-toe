@@ -1,4 +1,5 @@
-# Tic-Tac-Toe
+# testing_tic_tac_toe
+Testing Tic Tac Toe terminal game (https://github.com/tundeiness/Tic-Tic-Toe)
 
 Tic Tac Toe terminal game implementation using Ruby.
 
@@ -12,11 +13,18 @@ in a horizontal, vertical, or diagonal row wins the game.
 #### Prerequisites
 
 Ruby 2.5.0+
+RSpec 3.0+
 
 #### Run
+Run game:
 ```console
 ruby bin/main.rb
 ```
+Run tests:
+```console
+rspec
+```
+
 ## Live version
 
 Play it on [Repl.it](https://repl.it/@Nazeh1/Tic-Tac-Toe) <br/>
