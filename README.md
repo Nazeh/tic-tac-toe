@@ -28,12 +28,38 @@ cd tic-tac-toe
 ```console
 ruby bin/main.rb
 ```
+```console
+**************************************************
+******** Welcome To Our Tic-Tac-Toe Game! ********
+**************************************************
+****************** Instructions ******************
+** Each player should use an 8 characters name ***
+** Choose who will play first, using the X mark **
+** Each turn a player will choose a cell to mark *
+** Who marks a full row, col or a diagonal wins **
+** Players draw, if all cells are marked w/ win **
+** You can play again & players' score persist ***
+**************************************************
+****************                 *****************
+****************    7 | 8 | 9    *****************
+****************   ---+---+---   *****************
+****************    4 | 5 | 6    *****************
+****************   ---+---+---   *****************
+****************    1 | 2 | 3    *****************
+****************                 *****************
+********************* Score  *********************
+*********** Player 1 : 0  Player 2 : 0 ***********
+**************************************************
+
+Player 1: what's your name?  default: Player 1
+```
 
 **Run tests:**
 
 ```console
 rspec
 ```
+See the result in [Specs.md](Specs.md).
 
 ## Live version
 
