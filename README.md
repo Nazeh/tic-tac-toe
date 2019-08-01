@@ -17,7 +17,7 @@ gem install rspec
 ### Install
 
 ```console
-git clone https://github.com/Nazeh/tic-tac-toe
+git clone git@github.com:Nazeh/tic-tac-toe.git
 cd tic-tac-toe
 ```
 
